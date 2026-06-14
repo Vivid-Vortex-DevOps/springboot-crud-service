@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: ""   # Set by CI: trial7o1gnn.jfrog.io/springboot-crud-service
+  tag: "latest"
+  pullPolicy: Always
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+env:
+  SPRING_PROFILES_ACTIVE: dev
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.monitoring.svc.cluster.local:4318"
+
+serviceAccount:
+  annotations:
+    azure.workload.identity/client-id: ""  # Set by ArgoCD parameter override
+
+autoscaling:
+  enabled: false

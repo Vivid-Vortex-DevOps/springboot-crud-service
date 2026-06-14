@@ -1,0 +1,6 @@
+apiVersion: v2
+name: springboot-crud-service
+description: Spring Boot CRUD microservice Helm chart
+type: application
+version: 0.1.0
+appVersion: "0.0.1"

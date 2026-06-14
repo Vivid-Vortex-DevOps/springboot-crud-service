@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+management:
+  tracing:
+    sampling:
+      probability: 0.5
+
+logging:
+  level:
+    com.crud: INFO

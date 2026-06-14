@@ -1,0 +1,51 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Build, Test & Lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Compile
+        run: ./gradlew compileJava --no-daemon
+
+      - name: Unit Tests
+        run: ./gradlew test --no-daemon
+
+      - name: Integration Tests
+        run: ./gradlew integrationTest --no-daemon
+
+      - name: Publish Test Results
+        uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: '**/build/test-results/**/*.xml'
+
+      - name: Helm Lint
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.0
+      - run: helm lint deployment/helm/
+
+      - name: Helm Template (dev)
+        run: helm template springboot-crud-service deployment/helm/ -f deployment/values/dev.yaml

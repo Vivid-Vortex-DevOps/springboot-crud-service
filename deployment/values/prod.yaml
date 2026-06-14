@@ -1,0 +1,28 @@
+replicaCount: 3
+
+image:
+  repository: ""
+  tag: "latest"
+  pullPolicy: Always
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 768Mi
+  limits:
+    cpu: 1500m
+    memory: 1536Mi
+
+env:
+  SPRING_PROFILES_ACTIVE: prod
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.monitoring.svc.cluster.local:4318"
+
+serviceAccount:
+  annotations:
+    azure.workload.identity/client-id: ""
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 60
