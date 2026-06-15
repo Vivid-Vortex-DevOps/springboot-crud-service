@@ -5,7 +5,7 @@ spring:
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/springboot_service_db}
     username: ${SPRING_DATASOURCE_USERNAME:cruduser}
-    password: ${SPRING_DATASOURCE_PASSWORD}   # no default — must be injected
+    password: ${SPRING_DATASOURCE_PASSWORD:}   # empty default; @ServiceConnection overrides in tests
 
   jpa:
     hibernate:
