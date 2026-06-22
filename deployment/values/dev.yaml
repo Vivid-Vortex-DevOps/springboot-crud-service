@@ -1,9 +1,9 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/vivid-vortex-devops/springboot-crud-service
+  repository: springboot-crud-service
   tag: "latest"
-  pullPolicy: Always
+  pullPolicy: Never
 
 resources:
   requests:
@@ -15,11 +15,7 @@ resources:
 
 env:
   SPRING_PROFILES_ACTIVE: dev
-  OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector.monitoring.svc.cluster.local:4318"
-
-serviceAccount:
-  annotations:
-    azure.workload.identity/client-id: ""  # Set by ArgoCD parameter override
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger.monitoring.svc.cluster.local:4318"
 
 autoscaling:
   enabled: false

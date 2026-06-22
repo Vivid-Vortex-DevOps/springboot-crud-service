@@ -60,7 +60,7 @@ env:
   SPRING_PROFILES_ACTIVE: dev
   OTEL_EXPORTER_OTLP_ENDPOINT: ""
 
-# DB credentials come from Azure Key Vault via Workload Identity
+# The secret must be created in the namespace before deploying.
 dbSecret:
   secretName: springboot-crud-db-credentials
   urlKey: database-url
