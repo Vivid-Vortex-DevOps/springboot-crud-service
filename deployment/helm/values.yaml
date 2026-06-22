@@ -67,6 +67,10 @@ dbSecret:
   usernameKey: username
   passwordKey: password
 
+serviceMonitor:
+  enabled: false
+  interval: 30s
+
 autoscaling:
   enabled: false
   minReplicas: 1
