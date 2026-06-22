@@ -15,7 +15,7 @@ resources:
 
 env:
   SPRING_PROFILES_ACTIVE: dev
-  OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger.monitoring.svc.cluster.local:4317"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://jaeger.monitoring.svc.cluster.local:4318/v1/traces"
 
 serviceMonitor:
   enabled: true
