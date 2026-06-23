@@ -68,8 +68,8 @@ dependencies {
 	// Prometheus metrics export
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 
-	// OpenTelemetry — traces via OTLP (no Java agent required)
-	implementation 'org.springframework.boot:spring-boot-opentelemetry'
+	// OpenTelemetry — traces via OTLP
+	implementation 'org.springframework.boot:spring-boot-starter-opentelemetry'
 	implementation 'io.micrometer:micrometer-tracing-bridge-otel'
 	implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
 
